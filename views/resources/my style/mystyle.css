@@ -1,0 +1,62 @@
+*{
+    box-sizing: border-box !important;
+}
+.bgnavbar{
+    background: linear-gradient(10deg,violet,yellow,aqua);
+    font-weight: bold;
+}
+.bgnavbaradmin{
+    background: linear-gradient(20deg,#feffd3,#b2f3ff);
+}
+.bgnavbaradmin a{
+    color: #000;
+    /* font-weight: bold; */
+}
+.footer{
+    width:100%;
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    background-color: #fff;
+}
+.gappingbox{
+    display: block;
+    height: 120px;
+}
+.notfound{
+    text-align: center;
+    font-size: 80px;
+    color: red;
+}
+.regform{
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 10px 10px 5px gray;
+    border-radius: 12px;
+}
+.profilepic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 10px solid red; */
+}
+.profilepic img{
+    width: 250px;
+    height: 300px;
+    border-radius: 30px;
+    border: 1px solid #371010;
+}
+#messagesbox p{
+    width: 90%;
+    border: 1px solid darkblue;
+    border-radius: 10px;
+    padding: 4px;
+    box-shadow: 5px 5px 4px 2px gray;
+}
+#alluserslist{
+    list-style: decimal inside;
+}
+#messagesbox{
+    height: 300px;
+    overflow: auto;
+}

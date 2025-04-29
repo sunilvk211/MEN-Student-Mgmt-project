@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services</title>
+  <%- include('partials/head') %>
+</head>
+
+<body>
+  <%- include('partials/navbar_admin') %>
+  <div class="gappingbox"></div>
+  
+  <h1> Registered Student List</h1>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+      <%
+      if(studentlist != null){
+          studentlist.forEach((std)=>{ %>
+            
+            <div class="card mb-3 g-2">
+              <div class="row g-0">
+                <div class="col-md-5">
+                  <div class="row">
+                    <div class="col-12">
+                      <img src="data:<%= std.photoformat %>;base64,<%= std.photo.toString('base64') %>" class="img-fluid  mb-4 rounded-start" alt="...">
+                    </div>
+                    <div class="col-12 mb-2 gap-2 d-md-flex justify-content-md-center">
+                      <a class="btn btn-sm btn-primary" onclick="return confirm('Click ok to View or Update profile.')" href="/admin/viewstd/<%=std.email%>" role="button">View / Update</a>
+                    </div>
+                    <div class="col-12 mb-2 gap-2 d-md-flex justify-content-md-center">
+                      <a class="btn btn-sm btn-warning" onclick="return confirm('Click ok to block profile')" href="/admin/blockstd/<%=std.email%>" role="button">Block user</a>
+                    </div>
+                    <div class="col-12 mb-2 d-md-flex justify-content-md-center">
+                      <a class="btn btn-sm btn-danger" onclick="return confirm('Click ok to delete student account')" href="/admin/deletestd/<%=std.email%>" role="button">Delete Account</a>
+                    </div>
+                    <div class="col-12 d-md-flex justify-content-md-center">
+                      <a class="btn btn-sm btn-info" onclick="return confirm('Click ok to allocate Course to student')" href="/admin/allocate/<%=std.email%>" role="button">Allocate Course</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="card-body">
+                    <h5 class="card-title"><%=std.name %>: <%= std.mobile%></h5>
+                    <p class="card-text">
+                      <%=std.email%>, <br> <b>Verify: </b><%= std.emailverify%> <b>Block: </b><%= std.blockstatus%>
+                      <b><%= std.gender%></b> <br> <b>DOB</b> <%= std.dob %> <br> <b>Role: </b> <%= std.role %> <br>
+                      <b>Course: </b><%= std.course %>
+                    </p>
+                    <p class="card-text"><%= std.address %>, <%= std.city %>, <%= std.state %>
+                      <small class="text-muted"><%=std._id %></small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+      <% })} %>
+          </div>
+        </div>
+
+    <div class="gappingbox"></div>
+
+    <%- include('partials/footer') %>
+</body>
+
+</html>

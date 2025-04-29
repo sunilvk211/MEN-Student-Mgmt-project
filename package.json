@@ -1,0 +1,38 @@
+{
+  "name": "studentmgmt",
+  "version": "1.0.0",
+  "description": "admin control to users account, and provide multitype services to students.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MVC_Pattern",
+    "admin",
+    "role",
+    "student",
+    "role",
+    "login",
+    "logout",
+    "security",
+    "and",
+    "more",
+    "controllings"
+  ],
+  "author": "infoviaan",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mongodb": "^6.13.0",
+    "mongoose": "^8.9.6",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.10.0",
+    "socket.io": "^4.8.1"
+  }
+}

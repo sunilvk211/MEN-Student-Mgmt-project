@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Student</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    
+    <%- include('partials/navbar_admin') %>
+    <div class="gappingbox"></div>
+
+    <div class="container regform">
+      <div class="alert <%= typeof type != null ?  type : '' %>" role="alert">
+        <%= typeof msg != null ? msg : "" %>
+      </div>
+      <h1> <%= loginuser.role %>: Profile</h1>
+      <div class="row">
+        <div class="col-12 profilepic">
+          <img src="data:<%= loginuser.photoformat %>;base64,<%= loginuser.photo.toString('base64') %>" alt="image not found">
+        </div>
+      </div>
+      <span> <%= loginuser._id%></span>
+      <form class="row g-3 needs-validation" action="/admin/adminupdate" method="post" enctype="multipart/form-data" novalidate>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">Name</label>
+          <input type="text" name="stdname" value="<%= loginuser.name%>" class="form-control" id="validationCustom01" required>
+          <input type="hidden" name="stdid" value="<%= loginuser._id %>">
+          <div class="valid-feedback">
+            Name OK
+          </div>
+          <div class="invalid-feedback">
+            Please Enter Name.
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationCustom02" class="form-label">Mobile</label>
+          <input type="tel" name="stdmobile" value="<%= loginuser.mobile %>" maxlength="10" minlength="10" class="form-control" id="validationCustom02" required>
+          <div class="valid-feedback">
+            Mobile OK
+          </div>
+          <div class="invalid-feedback">
+            Please Enter Mobile.
+          </div>
+        </div>
+        <div class="col-md-5">
+          <label for="validationCustom02" class="form-label">Email</label>
+          <input type="email" name="stdemail"  readonly value="<%= loginuser.email %>" class="form-control" id="validationCustom02" required>
+          <div class="valid-feedback">
+            Email OK
+          </div>
+          <div class="invalid-feedback">
+            Please Enter Email
+          </div>
+        </div>
+    
+        <div class="col-md-4">
+          <label for="validationCustom03" class="form-label">Role</label> <br>
+          <span>  <%= loginuser.role %> </span> &nbsp; &nbsp; &nbsp;
+          <input type="radio" name="userrole" value="student" class="" id="validationCustom03" required> Student &nbsp; &nbsp; &nbsp;
+          <input type="radio" name="userrole" value="admin" class="" id="validationCustom03" required> Admin
+          <div class="valid-feedback">
+            Role OK
+          </div>
+          <div class="invalid-feedback">
+            Please select Role
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="validationCustom03" class="form-label">Block Status</label> <br>
+          <span>  <%= loginuser.blockstatus %></span>
+          <input type="radio" name="stdblock" value="true" class="" id="validationCustom03" required> Do Block &nbsp; &nbsp; &nbsp;
+          <input type="radio" name="stdblock" value="false" class="" id="validationCustom03" required> Don't Block
+          <div class="valid-feedback">
+            BLock OK
+          </div>
+          <div class="invalid-feedback">
+            Please select Block status
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="validationCustom03" class="form-label">Gender</label> <br>
+          <span> <%= loginuser.gender %> </span> &nbsp; &nbsp; 
+          <input type="radio" name="stdgender" value="male" class="" id="validationCustom03" required> Male &nbsp; &nbsp; &nbsp;
+          <input type="radio" name="stdgender" value="female" class="" id="validationCustom03" required> Female
+          <div class="valid-feedback">
+            Gender OK
+          </div>
+          <div class="invalid-feedback">
+            Please select gender.
+          </div>
+        </div>
+        <%
+          let d = String(loginuser.dob.getMonth()+1).padStart(2,'0');
+        %>
+        <div class="col-md-3">
+          <label for="validationCustom03" class="form-label">Date of Birth</label>
+          <input type="date" name="stddob" value="<%=loginuser.dob.getFullYear()%>-<%=d %>-<%=loginuser.dob.getDate() %>" class="form-control" id="validationCustom03" required>
+          <div class="valid-feedback">
+            Date of Birth OK
+          </div>
+          <div class="invalid-feedback">
+            Please provide Date of Birth .
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <label for="validationCustom03" class="form-label">Photo</label>
+          <input type="file" name="stdphoto" class="form-control" id="validationCustom03" required>
+          <div class="valid-feedback">
+            photo OK
+          </div>
+          <div class="invalid-feedback">
+            Please upload photo.
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationCustom03" class="form-label">Address</label>
+          <input type="text" name="stdaddress" value="<%= loginuser.address %>" class="form-control" id="validationCustom03" required>
+          <div class="valid-feedback">
+            Address OK
+          </div>
+          <div class="invalid-feedback">
+            Please Enter Address.
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <label for="validationCustom03" class="form-label">City</label>
+          <input type="text" name="stdcity" value="<%= loginuser.city %>" class="form-control" id="validationCustom03" required>
+          <div class="valid-feedback">
+            City OK
+          </div>
+          <div class="invalid-feedback">
+            Please Enter city.
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="validationCustom04" class="form-label">State</label>
+          <select class="form-select" name="stdstate" id="validationCustom04" required>
+            <option selected hidden value=""> <%= loginuser.state %> </option>
+            <option value="MP">MP</option>
+            <option value="UP">UP</option>
+            <option value="MH">MH</option>
+            <option value="GJ">GJ</option>
+            <option value="RJ">RJ</option>
+            <option value="DL">DL</option>
+          </select>
+          <div class="valid-feedback">
+            State OK
+          </div>
+          <div class="invalid-feedback">
+            Please select state.
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="validationCustom04" class="form-label">Course</label>
+          <select class="form-select" name="stdcourse" id="validationCustom04" required>
+            <option selected hidden value=""> <%= loginuser.course %></option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="React JS">React Js</option>
+            <option value="MERN">MERN</option>
+            <option value="Data Analysis">Data Analysis</option>
+            <option value="Basic Computer">Basic Computer</option>
+          </select>
+          <div class="valid-feedback">
+            Course OK
+          </div>
+          <div class="invalid-feedback">
+            Please select a course.
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <label for="validationCustom03" class="form-label">Password</label>
+          <input type="text" name="stdpassword" class="form-control" id="validationCustom03" required>
+          <div class="valid-feedback">
+            Password OK
+          </div>
+          <div class="invalid-feedback">
+            Please create Password
+          </div>
+        </div>
+ 
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="stdagree" value="i agree term & con." id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Agree to terms and conditions.
+            </label>
+            <div class="valid-feedback">
+              Agree OK.
+            </div>
+            <div class="invalid-feedback">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Update Now!</button>
+        </div>
+      </form>
+      <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+      </script>
+    </div>
+
+
+
+    <div class="gappingbox"></div>
+    
+    <%- include('partials/footer') %>
+</body>
+</html>

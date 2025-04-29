@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    
+    <%- include('partials/navbar_admin') %>
+    <div class="gappingbox"></div>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h2> Welcome: <%=loginuser.name %></h2>
+          <h4>Role: <%=loginuser.role %></h4> 
+        </div>
+      </div>
+    </div>
+
+    <div class="gappingbox"></div>
+    <%- include('partials/footer') %>
+
+</body>
+</html>

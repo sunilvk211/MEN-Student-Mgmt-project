@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar_admin') %>
+    <div class="gappingbox"></div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Service Name</th>
+                <th scope="col"> Course </th>
+                <th scope="col"> Category </th>
+                <th scope="col"> File </th>
+                <th scope="col"> Action </th>
+              </tr>
+            </thead>
+            <tbody>
+              <%
+              let i = 1;
+              if(servicelist != null){
+                servicelist.forEach((service)=>{  %>
+                  
+                  <tr>
+                    <th scope="row"><%= i++ %></th>
+                    <td><%=service.name%></td>
+                    <td><%=service.course%></td>
+                    <td><%=service.filed %>, <%= service.number%></td>
+                    <td> <iframe src="data:<%=service.format%>;base64,<%=service.file.toString('base64')%>" frameborder="0"></iframe></td>
+                    <td>
+                      <div class="row">
+                        <div class="col-12 mb-4 gap-2 d-md-flex justify-content-md-center">
+                          <a class="btn btn-outline-primary" href="#" role="button">View/ Update</a> 
+                        </div>
+                        <div class="col-12 mb-4 gap-2 d-md-flex justify-content-md-center">
+                          <a class="btn btn-outline-danger" href="#" role="button">Delete</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  
+                  <% })} %>
+            </tbody>
+          </table>
+    </div>
+
+    <div class="gappingbox"></div>
+    <%- include('partials/footer') %>
+</body>
+</html>

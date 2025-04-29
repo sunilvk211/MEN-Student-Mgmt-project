@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatting</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar_user') %>
+    <div class="gappingbox"></div>
+
+
+    <div class="container">
+      <h1> User Chatting </h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="mb-3">
+            <label for="validationTextarea" class="form-label">Messages</label>
+            <textarea class="form-control" id="newmessage" placeholder="Required example textarea" required></textarea>
+            <div class="invalid-feedback">
+              Please enter a message.
+            </div>
+            <button type="button" id="submitbtn" class="btn btn-primary">Send now !</button>
+          </div>
+          <div class="row">
+            <div class="col-12" id="messagesbox">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+              <h5 class="card-header">Online Users List</h5>
+              <ul class="list-group" id="alluserslist">
+                <li class="list-group-item">Arjun</li>
+              </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="gappingbox"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      let alluserslist = document.getElementById('alluserslist');
+      let username ;
+      let submitbtn = document.getElementById('submitbtn');
+      let newmessage = document.getElementById('newmessage');
+      let messagesbox = document.getElementById('messagesbox');
+
+      do{
+        username = prompt('Enter Your Name.?');
+      }while(! username)
+
+      socket.emit('joinuser',username);
+
+      socket.on('alluser',(userslist)=>{
+        // console.log(userslist);
+        alluserslist.innerHTML = "";
+        let myusers= Object.values(userslist);
+        for(i =0 ; i< myusers.length; i++ ){
+          let li = document.createElement('li');
+          li.innerText = myusers[i];
+          alluserslist.append(li);
+        }
+      });
+
+      submitbtn.addEventListener('click',(e)=>{
+        let message = newmessage.value;
+        socket.emit('user-send-msg',{u:username,m:message});
+        newmessage.value = "";
+        messagesbox.scrollTop = messagesbox.scrollHeight;
+      });
+
+      socket.on('share-now',(msgdata)=>{
+        let p = document.createElement('p');
+        p.innerHTML = msgdata.m+", <b>by:</b> "+msgdata.u;
+        messagesbox.append(p);
+        messagesbox.scrollTop = messagesbox.scrollHeight;
+      });
+
+    </script>
+    <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Student</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    
+    <%- include('partials/navbar_admin') %>
+    <div class="gappingbox"></div>
+
+    <div class="container regform">
+      <div class="alert <%= typeof type != null ?  type : '' %>" role="alert">
+        <%= typeof msg != null ? msg : "" %>
+      </div>
+      <h1> Add Service</h1>
+      <form class="row g-3 needs-validation" action="/admin/serviceallocate" method="post" novalidate>
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label">User Email ID</label>
+          <input type="text" name="useremail" class="form-control" id="validationCustom01" readonly value="<%=useremail %>">
+          <div class="valid-feedback">
+            Service Name OK
+          </div>
+          <div class="invalid-feedback">
+            Please Enter Service Name.
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label for="validationCustom04" class="form-label">Select Service Course</label>
+          <select class="form-select" name="seralloccourseid" id="validationCustom04" required>
+            <option selected hidden value="">Choose...</option>
+
+            <% if(servicelist != null) {
+              servicelist.forEach((service)=>{ %>
+
+                <option value="<%= service._id%>"><%= service.name%>, <%= service.course%>, <%= service.field%>, <%= service.number%></option>
+      <%  }) }%>
+          </select>
+          <div class="valid-feedback">
+            Service Course OK
+          </div>
+          <div class="invalid-feedback">
+            Please select Service Course.
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="stdagree" value="i agree to Upload." id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Agree to Upload
+            </label>
+            <div class="valid-feedback">
+              Confirm to Upload Service OK
+            </div>
+            <div class="invalid-feedback">
+              You must Confirm to Upload Service.
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Upload Service Now!</button>
+        </div>
+      </form>
+      <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+      </script>
+    </div>
+
+
+
+    <div class="gappingbox"></div>
+    
+    <%- include('partials/footer') %>
+</body>
+</html>

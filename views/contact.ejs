@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar_user') %>
+    <div class="gappingbox"></div>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Our Office Address</h5>
+                    <address>
+                        <h2>
+                            118, 1st Floor, Shagun Arcade, <br> <br> Near Medanta Hospital, <br> <br> Vijay Nagar, Indore
+                        </h2>
+                    </address>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Contact Us </h5>
+                  <div class="alert <%= typeof type != null ?  type : '' %>" role="alert">
+                    <%= typeof msg != null ? msg : "" %>
+                  </div>
+                  <form action="/contact" method="post" class="row g-3 needs-validation" novalidate>
+                    <div class="col-md-12">
+                      <label for="validationCustom01" class="form-label">Enter Name</label>
+                      <input type="text" name="uname" class="form-control" id="validationCustom01"  required>
+                      <div class="valid-feedback">
+                        Name ok
+                      </div>
+                      <div class="invalid-feedback">
+                        Please Enter Name.
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="validationCustom02" class="form-label">Mobile</label>
+                      <input type="text" name="umobile" class="form-control" id="validationCustom02" required>
+                      <div class="valid-feedback">
+                        Mobile ok
+                      </div>
+                      <div class="invalid-feedback">
+                        Please Enter Mobile.
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="validationCustom02" class="form-label">Email</label>
+                      <input type="text" name="uemail" class="form-control" id="validationCustom02" placeholder="Email (Optional)">
+                      <div class="valid-feedback">
+                        Email ok
+                      </div>
+                      <div class="invalid-feedback">
+                        Please Enter Email.
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="validationTextarea" class="form-label">Message for Admin</label>
+                        <textarea class="form-control" name="umsg" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+                        <div class="valid-feedback">
+                            Message ok
+                          </div>
+                        <div class="invalid-feedback">
+                          Please enter a message.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-primary" type="submit">Send Message</button>
+                    </div>
+                  </form>
+
+                  <script>
+                    // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+              'use strict'
+            
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.querySelectorAll('.needs-validation')
+            
+              // Loop over them and prevent submission
+              Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                  form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                      event.preventDefault()
+                      event.stopPropagation()
+                    }
+            
+                    form.classList.add('was-validated')
+                  }, false)
+                })
+            })()
+                </script>
+             
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="gappingbox"></div>
+
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="card">
+                        
+                        <div class="">
+                            <h5 class="card-title">Google map location</h5>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3535.70638395397!2d75.89536079999999!3d22.749258999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39630370245b7723%3A0xbbbac16661c85765!2sInfoviaan%20Technolgies!5e1!3m2!1sen!2sin!4v1738744190240!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="gappingbox"></div>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

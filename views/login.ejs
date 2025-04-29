@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    
+    <%- include('partials/navbar_user') %>
+    <div class="gappingbox"></div>
+    <div class="container">
+
+      <div class="alert <%= typeof type != null ?  type : '' %>" role="alert">
+        <%= typeof msg != null ? msg : "" %>
+      </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+        <h2> Student Login</h2> 
+        <form action="/loginstudent" method="post" class="row g-3 needs-validation" novalidate>
+            <div class="col-md-12">
+              <label for="validationCustom01" class="form-label">User ID</label>
+              <input type="text" name="id" class="form-control" id="validationCustom01"  required>
+              <div class="valid-feedback">
+                User id ok
+              </div>
+              <div class="invalid-feedback">
+                Please Enter User ID.
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label for="validationCustom02" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="validationCustom02" required>
+              <div class="valid-feedback">
+                Password ok
+              </div>
+              <div class="invalid-feedback">
+                Please Enter Password.
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                  Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                  You must agree before Login.
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">Click Login</button>
+            </div>
+          </form>
+
+
+        </div>
+        <div class="col-12 col-md-6">
+            <h2> Admin Login</h2>
+            <form action="/loginadmin" method="post" class="row g-3 needs-validation" novalidate>
+                <div class="col-md-12">
+                  <label for="validationCustom01" class="form-label">Admin ID</label>
+                  <input type="text" name="id" class="form-control" id="validationCustom01"  required>
+                  <div class="valid-feedback">
+                    Admin id ok
+                  </div>
+                  <div class="invalid-feedback">
+                    Please Enter Admin ID.
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <label for="validationCustom02" class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" id="validationCustom02" required>
+                  <div class="valid-feedback">
+                    Password ok
+                  </div>
+                  <div class="invalid-feedback">
+                    Please Enter Password.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="i agree " id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                      Agree to terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                      You must agree before Login.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Click Login</button>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+    </script>
+    <div class="gappingbox"></div>
+    <%- include('partials/footer') %>
+
+</body>
+</html>
