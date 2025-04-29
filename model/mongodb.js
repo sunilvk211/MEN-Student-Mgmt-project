@@ -1,6 +1,6 @@
 const mongoClient = require('mongodb').MongoClient;
 require('dotenv').config()
-const uri = process.env.uri2;
+const uri = process.env.uri1;
 const client = new mongoClient(uri);
 
 module.exports = {
